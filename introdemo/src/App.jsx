@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import Note from './components/Note'
 
 /*
 const Display = ({ counter }) => <div>{counter}</div>
@@ -77,6 +77,7 @@ const App = () => {
 }
 */
 
+/*
 const Button = ({ onClick, text }) => <button onClick={onClick}>{text}</button>
 
 const Display = ({ value }) => <div>{value}</div>
@@ -97,6 +98,20 @@ const App = () => {
       <Button onClick={setToValue(1000)} text='thousand' />
       <Button onClick={setToValue(0)} text='reset' />
       <Button onClick={setToValue(value + 1)} text='increment' />
+    </div>
+  )
+}
+*/
+
+const App = ({ notes }) => {
+  return (
+    <div>
+      <h1>Notes</h1>
+      <ul>
+        {notes.map((note) =>
+          <Note key={note.id} note={note} />
+        )}
+      </ul>
     </div>
   )
 }
