@@ -20,23 +20,30 @@ const noteSchema = new mongoose.Schema({
 
 const Note = mongoose.model('Note', noteSchema)
 
-const note1 = new Note({
-  content: 'HTML is easy',
-  important: true,
-})
+// const note1 = new Note({
+//   content: 'HTML is easy',
+//   important: true,
+// })
 
-const note2 = new Note({
-  content: 'Browser can execute only JavaScript',
-  important: false,
-})
+// const note2 = new Note({
+//   content: 'Browser can execute only JavaScript',
+//   important: false,
+// })
 
-const note3 = new Note({
-  content: 'GET and POST are the most important methods of HTTP protocol',
-  important: true,
-})
+// const note3 = new Note({
+//   content: 'GET and POST are the most important methods of HTTP protocol',
+//   important: true,
+// })
 
-note1.save()
-note2.save()
-note3.save().then(() => {
+// note1.save()
+// note2.save()
+// note3.save().then(() => {
+//   mongoose.connection.close()
+// })
+
+Note.find({ important: true }).then(result => {
+  result.forEach(note => {
+    console.log(note)
+  })
   mongoose.connection.close()
 })
