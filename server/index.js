@@ -43,14 +43,14 @@ app.get('/api/notes', (request, response) => {
 
 app.get('/api/notes/:id', (request, response, next) => {
   Note.findById(request.params.id)
-  .then((note) => {
-    if (note) {
-      response.json(note)
-    } else {
-      response.status(404).end()
-    }
-  })
-  .catch(error => next(error))
+    .then((note) => {
+      if (note) {
+        response.json(note)
+      } else {
+        response.status(404).end()
+      }
+    })
+    .catch(error => next(error))
 })
 
 app.post('/api/notes', (request, response, next) => {
@@ -58,8 +58,8 @@ app.post('/api/notes', (request, response, next) => {
 
   if (!body.content) {
     return response.status(400).json({
-        error: 'Content missing'
-      })
+      error: 'Content missing'
+    })
   }
 
   const note = new Note({
@@ -68,10 +68,10 @@ app.post('/api/notes', (request, response, next) => {
   })
 
   note.save()
-  .then((savedNote) => {
-    response.json(savedNote)
-  })
-  .catch(error => next(error))
+    .then((savedNote) => {
+      response.json(savedNote)
+    })
+    .catch(error => next(error))
 })
 
 app.put('/api/notes/:id', (request, response, next) => {
@@ -95,7 +95,7 @@ app.put('/api/notes/:id', (request, response, next) => {
 
 app.delete('/api/notes/:id', (request, response, next) => {
   Note.findByIdAndDelete(request.params.id)
-    .then((result) => {
+    .then(() => {
       response.status(204).end()
     })
     .catch((error) => next(error))
